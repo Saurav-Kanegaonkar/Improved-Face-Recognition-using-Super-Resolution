@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="card container bg-dark" style="text-align: center; margin-top: 3rem; padding: 1rem;">
+    <table class="table-dark table-striped table-hover ">
+        <thead>
+          <tr>
+            <th scope="col">Sr No</th>
+            <th scope="col">Date</th>
+            <th scope="col">Batch</th>
+            <th scope="col">Classroom</th>
+            <th scope="col">Subject</th>
+            <th scope="col">Start Time</th>
+            <th scope="col">End Time</th>
+            <th scope="col">Attendance</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for lecture in lectures %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th>
+                    <td>{{lecture['Date']}}</td>
+                    <td>{{lecture['batch']}}</td>
+                    <td>{{lecture['classroom']}}</td>
+                    <td>{{lecture['subject']}}</td>
+                    <td>{{lecture['startTime']}}</td>
+                    <td>{{lecture['endTime']}}</td>
+                    <td><a class="reset-a" href="/teach/{{g.user_id}}/lectures/{{lecture['batch']}}/{{lecture['Date']}}/{{lecture['startTime']}}"><button type="button" class="btn btn-info">Attendance</button></a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container card text-white bg-dark" style="width: 32rem; margin-top: 7rem">
+    <div class="card-body">
+        <h4 class="card-title" style="text-align:center">Register</h4>
+        {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+        <form method="post">
+            <div class="mb-3">
+                <label for="college_id" class="form-label">College ID</label>
+                <input type="number" value="{{ request.form['college_id'] }}" class="form-control" name="college_id" id="college_id" aria-describedby="college_id" required>
+                <div id="college_id" class="form-text">Please enter your 9 digit college ID.</div>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" value="{{ request.form['password'] }}" name="password" class="form-control" id="password" required>
+                <div id="college_id" class="form-text">Set password for your account.</div>
+            </div>
+            <div class="mb-3">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="role" id="admin" checked value="Admin">
+                    <label class="form-check-label" for="admin">Admin</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="role" id="teacher" value="Teacher">
+                    <label class="form-check-label" for="teacher">Teacher</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="role" id="student" value="Student">
+                    <label class="form-check-label" for="student">Student</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <button type="submit" class="btn btn-primary" value="Save">Submit</button>
+                </div>
+                <div class="col-8">
+                    <a style="color: white" href="{{ url_for('auth.login') }}">Already registered? Click here to login.</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

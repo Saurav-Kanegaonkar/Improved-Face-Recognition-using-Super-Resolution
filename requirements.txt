@@ -1,0 +1,18 @@
+cmake
+dlib
+face_recognition
+albumentations==1.0.0 
+imutils==0.5.4
+opencv-contrib-python==4.5.1.48
+opencv-python==4.5.1.48
+opencv-python-headless==4.5.1.48
+torch==1.7.1+cpu torchvision==0.8.2+cpu -f https://download.pytorch.org/whl/torch_stable.html
+flask
+flask-cors
+flask-bcrypt
+Flask-Mail
+Flask-PyMongo
+Flask-Session
+redis
+python-dotenv
+random-password-generator
