@@ -1,7 +1,23 @@
 backend/__pycache__
 
+backend/admin/__pycache__
+
+backend/auth/__pycache__
+
+backend/teacher/__pycache__
+
+backend/student/__pycache__
+
+backend/face_rec/__pycache__
+
+backend/regionOfInterest/__pycache__
+
+backend/SRGAN/__pycache__
+
 backend/venv
 
 frontend/node_modules
+
+frontend/src/package-lock.json
 
 # backend/SRGAN/disc.pth.tar
