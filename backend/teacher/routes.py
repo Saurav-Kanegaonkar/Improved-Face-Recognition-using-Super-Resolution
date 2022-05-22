@@ -48,13 +48,12 @@ def lectures(college_id):
     for day in teacher_info['Timetable'].keys():
         for class_lectures in teacher_info['Timetable'][day]:
             for class_lecture in class_lectures['Attendance']:
-                if datetime.datetime.strptime(class_lecture['Date'], "%Y-%m-%d").date() <= datetime.date.today():
-                    class_lecture['batch'] = class_lectures['batch']
-                    class_lecture['subject'] = class_lectures['subject']
-                    class_lecture['classroom'] = class_lectures['classroom']
-                    class_lecture['startTime'] = class_lectures['startTime']
-                    class_lecture['endTime'] = class_lectures['endTime']
-                    lectures.append(class_lecture)
+                class_lecture['batch'] = class_lectures['batch']
+                class_lecture['subject'] = class_lectures['subject']
+                class_lecture['classroom'] = class_lectures['classroom']
+                class_lecture['startTime'] = class_lectures['startTime']
+                class_lecture['endTime'] = class_lectures['endTime']
+                lectures.append(class_lecture)
 
     lectures = sorted(lectures, key = lambda i: (i['Date'], i['startTime']))
     return json.dumps(lectures)

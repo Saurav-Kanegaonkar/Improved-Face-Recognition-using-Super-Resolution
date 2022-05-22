@@ -121,29 +121,29 @@ const T_attend = () =>{
     <div>
       <button className="btn btn-dark" onClick = {updateAttendance}>UPDATE ATTENDANCE</button>
       <div className="card container bg-dark" style={{textAlign: "center", marginTop : "3rem", padding : "1rem"}}>
-          <table className="table-dark table-striped table-hover ">
-            <thead>
-            <tr>
-              <th scope="col">Sr No</th>
-              <th scope="col">College ID</th>
-              <th scope="col">Student Name</th>
-              <th scope="col">Attendance</th>
-            </tr>
-            </thead>
-            <tbody>
-              { loadedAtt && loadedAtt.map((value)=>  
-                ( 
-                  <tr key={loop_index}>
-                    <th scope="row">{loop_index++}</th>
-                    <td>{value.studentID}</td>
-                    <td>{value.studentName}</td>
-                    <td><input style={{width:"20px", height:"20px"}} type="checkbox" checked = {value.isPresent} onChange= {() => updateAttendanceCheckbox(value.studentID, !value.isPresent)}/></td>
-                  </tr>
-                )
+        <table className="table-dark table-striped table-hover ">
+          <thead>
+          <tr>
+            <th scope="col">Sr No</th>
+            <th scope="col">College ID</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">Attendance</th>
+          </tr>
+          </thead>
+          <tbody>
+            { loadedAtt && loadedAtt.map((value)=>  
+              ( 
+                <tr key={loop_index}>
+                  <th scope="row">{loop_index++}</th>
+                  <td>{value.studentID}</td>
+                  <td>{value.studentName}</td>
+                  <td><input style={{width:"20px", height:"20px"}} type="checkbox" checked = {value.isPresent} onChange= {() => updateAttendanceCheckbox(value.studentID, !value.isPresent)}/></td>
+                </tr>
               )
-              }
-            </tbody>
-          </table>
+            )
+            }
+          </tbody>
+        </table>
 			</div>
     </div>);
 }

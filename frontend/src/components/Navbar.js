@@ -22,6 +22,20 @@ const Navbar = (props) => {
 	    sendRequest();
 	  }, []);
 
+    
+    const Logout = async () => {
+        try {
+	        const response = await fetch( "http://localhost:5000/logout");
+			const responseData = await response.json();
+	        // console.log(responseData)
+	        if (!response.ok) {
+	          throw new Error(responseData.message);
+	        }
+	      } catch (err) {
+	        console.log(err);
+	      }
+    }
+
     return(
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <div className="container-fluid">
@@ -40,7 +54,7 @@ const Navbar = (props) => {
                     }
                     
                     {userData['College ID'] ? (<li className="nav-item">
-                        <a className="nav-link active" aria-current="page" href="/">Logout</a>
+                        <a className="nav-link active" aria-current="page" href="login" onSubmit={() => Logout()}>Logout</a>
                     </li>)
                         : (<li className="nav-item">
                             <a className="nav-link active" aria-current="page" href="auth">Register</a>
