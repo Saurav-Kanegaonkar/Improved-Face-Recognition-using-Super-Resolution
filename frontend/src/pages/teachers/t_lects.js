@@ -145,9 +145,9 @@ const T_lects = () =>{
 				</div>
 				<br />
 				
-				<table className="table-dark table-striped table-hover ">
+				<table className="table-dark table-striped table-hover table-bordered ">
 					<thead>
-					<tr>
+					<tr style={{height: "50px"}}>
 						<th scope="col">Sr No</th>
 						<th scope="col">Date</th>
 						<th scope="col">Batch</th>

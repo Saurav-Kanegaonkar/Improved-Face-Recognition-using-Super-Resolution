@@ -1,6 +1,7 @@
 from flask import Blueprint, request, session
 from backend.extensions import mongo_students
 import datetime
+import json
 
 student = Blueprint('student', __name__, url_prefix='/student')
 
@@ -33,9 +34,54 @@ def add_attendance_section():
     return "hi"
 
 
+
 @student.route('/<int:college_id>/student_dashboard')
 def student_dashboard(college_id):
     student_collection = mongo_students.db.BTECH_COMPS_2018_2022
     students_info = {}
     for doc in student_collection.find({"College ID": college_id}):
-        students_info.append(doc)
+        students_info = doc
+    
+    student_lectures = []
+    for keys in students_info['Timetable'].keys():
+        for lecture in students_info['Timetable'][keys]:
+            for attendance in lecture['Attendance']:
+                mini_lecture = {}
+                mini_lecture['teacher'] = lecture['teacher']
+                mini_lecture['subject'] = lecture['subject']
+                mini_lecture['startTime'] = lecture['startTime']
+                mini_lecture['endTime'] = lecture['endTime']
+                mini_lecture['classroom'] = lecture['classroom']
+                mini_lecture['Date'] = attendance['Date']
+                mini_lecture['isPresent'] = attendance['isPresent']
+                student_lectures.append(mini_lecture)
+
+    student_lectures = sorted(student_lectures, key = lambda i: (i['Date'], i['startTime']))
+    print(student_lectures)
+    return json.dumps(student_lectures)
+
+
+@student.route('/<int:college_id>/attendance', methods=['GET'])
+def charts(college_id):
+    student_collection = mongo_students.db.BTECH_COMPS_2018_2022
+    students_info = {}
+    for doc in student_collection.find({"College ID": college_id}):
+        students_info = doc
+
+    single_lectures = []
+    for keys in students_info['Timetable'].keys():
+        for lecture in students_info['Timetable'][keys]:
+            for attendance in lecture['Attendance']:
+                mini_lecture = {}
+                mini_lecture['teacher'] = lecture['teacher']
+                mini_lecture['subject'] = lecture['subject']
+                mini_lecture['startTime'] = lecture['startTime']
+                mini_lecture['endTime'] = lecture['endTime']
+                mini_lecture['classroom'] = lecture['classroom']
+                mini_lecture['Date'] = attendance['Date']
+                mini_lecture['isPresent'] = attendance['isPresent']
+                single_lectures.append(mini_lecture)
+
+    # single_lectures_dict = {}
+    # for lecture in single_lectures:
+    #     if lecture['subject'])

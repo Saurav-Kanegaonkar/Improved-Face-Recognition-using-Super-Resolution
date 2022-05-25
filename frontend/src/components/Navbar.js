@@ -62,31 +62,31 @@ const Navbar = (props) => {
 	    //   </div>
       // </nav>
 
-      <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor : "#b3d5e3"}} id="ftco-navbar">
-      <div className="collapse navbar-collapse" style={{backgroundColor : "#b3d5e3"}} id="ftco-nav">
+      <nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor : "Black"}} id="ftco-navbar">
+      <div className="collapse navbar-collapse" style={{backgroundColor : "Black"}} id="ftco-nav">
           {/* <a className="navbar-brand" style={{fontSize:"33px"}} href="/"><i className="fa-solid fa-user-astronaut"></i></a> */}
           <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
           </button>
-          {userData['Role'] == 'teacher' ? (<a style={{color: 'black'}} className="nav-link active" href="/attendance_history">Attendance History</a>) : (<p></p>)}
-          {userData['Role'] == 'teacher' ? (<a style={{color: 'black'}} className="nav-link active" href="/lectures">Lectures</a>) : (<p></p>)}
-          {userData['Role'] == 'student' ? (<a style={{color: 'black'}} className="nav-link active" href="/student_dashboard">Dashboard</a>) : (<p></p>)}
-          {userData['Role'] == 'student' ? (<a style={{color: 'black'}} className="nav-link active" href="/student_lectures">Lectures</a>) : (<p></p>)}
+          {userData['Role'] == 'teacher' ? (<a style={{color: 'white'}} className="nav-link active" href="/attendance_history">Attendance History</a>) : (<p></p>)}
+          {userData['Role'] == 'teacher' ? (<a style={{color: 'white'}} className="nav-link active" href="/lectures">Lectures</a>) : (<p></p>)}
+          {userData['Role'] == 'student' ? (<a style={{color: 'white'}} className="nav-link active" href="/student_dashboard">Dashboard</a>) : (<p></p>)}
+          {userData['Role'] == 'student' ? (<a style={{color: 'white'}} className="nav-link active" href="/student_attendance_history">Attendance History</a>) : (<p></p>)}
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="navbar-nav ml-auto">
                   {userData['College ID'] ? (<li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="/">{userData['College ID']}</a>
+                      <a className="nav-link active" style={{color: 'white'}} aria-current="page" href="/">{userData['College ID']}</a>
                   </li>)
                       : (<li className="nav-item">
-                          <a className="nav-link active" aria-current="page" href="login">Login</a>
+                          <a className="nav-link active" style={{color: 'white'}} aria-current="page" href="login">Login</a>
                       </li>)
                   }
                   
                   {userData['College ID'] ? (<li className="nav-item">
-                      <a className="nav-link active" aria-current="page" href="/login" onClick={() => Logout()}>Logout</a>
+                      <a className="nav-link active" style={{color: 'white'}} aria-current="page" href="/login" onClick={() => Logout()}>Logout</a>
                   </li>)
                       : (<li className="nav-item">
-                          <a className="nav-link active" aria-current="page" href="auth">Register</a>
+                          <a className="nav-link active" style={{color: 'white'}} aria-current="page" href="auth">Register</a>
                       </li>)
                   }
                   

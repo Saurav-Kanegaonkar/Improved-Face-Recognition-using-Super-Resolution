@@ -1,4 +1,5 @@
 import React, {useEffect,useState} from 'react';
+
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -36,7 +37,8 @@ const Attendance_history = () => {
 			let mini_dataset = {}
 			mini_dataset['label'] = single_lectures[keys[i]][0]['Subject'] + ' - ' + single_lectures[keys[i]][0]['Batch'] + " : Single Lectures";
 			mini_dataset['data'] = single_lectures[keys[i]].map((lecture) => lecture['Attendance']);
-			mini_dataset['backgroundColor'] = 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) +', 0.5)';
+			mini_dataset['backgroundColor'] = 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) +')';
+      mini_dataset['borderColor'] = 'black';
 			
 			chart_dataset = [...chart_dataset, {"labels": chart_labels, "datasets":[mini_dataset]}];
 		}
@@ -49,7 +51,7 @@ const Attendance_history = () => {
 			let mini_dataset = {}
 			mini_dataset['label'] = monthly_lectures[keys[i]][0]['Subject'] + ' - ' + monthly_lectures[keys[i]][0]['Batch'] + " : Monthly Lectures";
 			mini_dataset['data'] = monthly_lectures[keys[i]].map((lecture) => lecture['Attendance']);
-			mini_dataset['backgroundColor'] = 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) +', 0.5)';
+			mini_dataset['backgroundColor'] = 'rgba(' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) + ', ' + Math.floor(Math.random() * 255) +')';
 			chart_dataset = [...chart_dataset, {"labels": chart_labels, "datasets":[mini_dataset]}];
 		}	
 		setDataset(chart_dataset);
@@ -89,10 +91,13 @@ const Attendance_history = () => {
   };
   
   return (
-    <div style={{width:"1000px"}}>
+    <div style={{width:"75%", backgroundColor: "white", marginLeft: "180px", marginTop:"50px"}}>
 	  	{ dataset && dataset.map((value, index)=>  
               ( 
-                <Bar key={index} options={options} data={value} />
+                <div>
+                  <Bar key={index} options={options} data={value} />
+                  <br></br>
+                </div>
               )
             )
         }

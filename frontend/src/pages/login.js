@@ -48,7 +48,13 @@ const Login = () => {
         throw new Error(responseData.message);
       }
       console.log(responseData);
-      window.location.href = "/lectures";
+      if(formState.inputs.role.value == 'Teacher')
+      {
+        window.location.href = "/lectures";
+      }
+      else if(formState.inputs.role.value == 'Student'){
+        window.location.href = "/student_dashboard";
+      }
     } catch (err) {
       console.log(err);
     }

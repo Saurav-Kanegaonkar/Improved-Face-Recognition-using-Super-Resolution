@@ -119,11 +119,10 @@ const T_attend = () =>{
 
 	return(
     <div>
-      <button className="btn btn-dark" onClick = {updateAttendance}>UPDATE ATTENDANCE</button>
       <div className="card container bg-dark" style={{textAlign: "center", marginTop : "3rem", padding : "1rem"}}>
-        <table className="table-dark table-striped table-hover ">
+        <table className="table-dark table-striped table-hover table-bordered">
           <thead>
-          <tr>
+          <tr style={{height: "50px"}}>
             <th scope="col">Sr No</th>
             <th scope="col">College ID</th>
             <th scope="col">Student Name</th>
@@ -133,7 +132,7 @@ const T_attend = () =>{
           <tbody>
             { loadedAtt && loadedAtt.map((value)=>  
               ( 
-                <tr key={loop_index}>
+                <tr key={loop_index} style={{height: "50px"}}>
                   <th scope="row">{loop_index++}</th>
                   <td>{value.studentID}</td>
                   <td>{value.studentName}</td>
@@ -145,6 +144,10 @@ const T_attend = () =>{
           </tbody>
         </table>
 			</div>
+      <br></br>
+      <button className="btn btn-dark" onClick = {updateAttendance}>UPDATE ATTENDANCE</button>
+      <br></br>
+      <br></br>
     </div>);
 }
 
