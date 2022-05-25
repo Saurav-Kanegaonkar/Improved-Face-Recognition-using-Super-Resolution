@@ -149,17 +149,29 @@ def charts(college_id):
                     lecture["isPresent"] = presentees
                     lecture['isAbsent'] = absentees
                     single_lectures.append(lecture)
-    print(single_lectures)
+
+    single_lectures_dict = {}
+    for lecture in single_lectures:
+        key = lecture['Subject'] + lecture['Batch']
+        if key not in single_lectures_dict.keys():
+            single_lectures_dict[key] = []
+        lecture['Attendance'] = (lecture['isPresent']/(lecture['isPresent']+lecture['isAbsent']))*100
+        single_lectures_dict[key].append(lecture)
+
+    for keys in single_lectures_dict.keys():
+        single_lectures_dict[keys] = sorted(single_lectures_dict[keys], key=lambda x: x['Date'])
+
+    print(single_lectures_dict)
     
     # Weekly-Lecture wise attendance : bar chart - subject vs weekdays & pie chart : total presentees vs total absentees for that subject on that week
     bar_chart_data = {}
-    for day in teacher_info['Timetable'].keys():
-        for class_lectures in teacher_info['Timetable'][day]:
-            for class_lecture in class_lectures['Attendance']:
-                if datetime.datetime.strptime(class_lecture['Date'], "%Y-%m-%d").date() <= datetime.date.today():
-                    day_of_month = datetime.datetime.strptime(class_lecture['Date'], "%Y-%m-%d").date().day
-                    week_number = (day_of_month - 1) // 7 + 1
-                    # key = 
+    # for day in teacher_info['Timetable'].keys():
+    #     for class_lectures in teacher_info['Timetable'][day]:
+    #         for class_lecture in class_lectures['Attendance']:
+    #             if datetime.datetime.strptime(class_lecture['Date'], "%Y-%m-%d").date() <= datetime.date.today():
+    #                 day_of_month = datetime.datetime.strptime(class_lecture['Date'], "%Y-%m-%d").date().day
+    #                 week_number = (day_of_month - 1) // 7 + 1
+    #                 # key = 
 
     # Monthly-Lecture wise attendance
     monthly_lectures = {}
@@ -193,6 +205,18 @@ def charts(college_id):
                         monthly_lectures[key]["isPresent"] += presentees
                         monthly_lectures[key]['isAbsent'] += absentees
 
-    print(monthly_lectures)
+    for keys in monthly_lectures.keys():
+        monthly_lectures[keys]['Attendance'] = (monthly_lectures[keys]['isPresent']/(monthly_lectures[keys]['isPresent']+monthly_lectures[keys]['isAbsent']))*100
+        del monthly_lectures[keys]['isPresent']
+        del monthly_lectures[keys]['isAbsent']
 
-    return json.dumps({"monthly_lectures":monthly_lectures, "single_lectures": single_lectures})
+    monthly_lectures_dict = {}
+    for keys in monthly_lectures.keys():
+        key = monthly_lectures[keys]['Subject'] + monthly_lectures[keys]['Batch']
+        if key not in monthly_lectures_dict.keys():
+            monthly_lectures_dict[key] = []
+        monthly_lectures_dict[key].append(monthly_lectures[keys])
+
+    print(monthly_lectures_dict)
+
+    return json.dumps({"monthly_lectures":monthly_lectures_dict, "single_lectures": single_lectures_dict})

@@ -31,3 +31,11 @@ def add_attendance_section():
                         attendance.append({"Date":date, "isPresent":False})
                     student_schedule = student_collection.update_one({"College ID":student['College ID']},{"$set":{query:attendance}})
     return "hi"
+
+
+@student.route('/<int:college_id>/student_dashboard')
+def student_dashboard(college_id):
+    student_collection = mongo_students.db.BTECH_COMPS_2018_2022
+    students_info = {}
+    for doc in student_collection.find({"College ID": college_id}):
+        students_info.append(doc)
