@@ -109,25 +109,6 @@ const T_lects = () =>{
 	    sendRequest();
 	  }, []);
 
-	// <div class="pa4">
-	// 	<div class="overflow-auto">
-	// 		<table class="f6 w-100 mw8 center" cellspacing="0">
-	// 		<tbody class="lh-copy">
-	// 			<tr class="stripe-dark">
-	// 			<td class="pa3">{value.Date}</td>
-	// 			<td class="pa3">{value.batch}</td>
-	// 			<td class="pa3">{value.classroom}</td>
-	// 			<td class="pa3">{value.subject}</td>
-	// 			<td class="pa3">{value.startTime}</td>
-	// 			<td class="pa3">{value.endTime}</td>
-	// 			<td class="pa3">{value["Student List"][0].student_name}</td>
-	// 			<br/>
-	// 			<Link to={"/t_attendance"} state ={{loadedData:value}}> Take Attendance </Link>
-	// 			</tr>
-	// 		</tbody>
-	// 		</table>
-	// 	</div>
-	// </div>
 	return( 
 			<div className="card container bg-dark" style={{textAlign: "center", marginTop : "3rem", padding : "1rem"}}>
 				<div className="row" >
