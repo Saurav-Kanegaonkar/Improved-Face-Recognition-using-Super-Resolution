@@ -94,8 +94,8 @@ const Attendance_history = () => {
     <div style={{width:"75%", backgroundColor: "white", marginLeft: "180px", marginTop:"50px"}}>
 	  	{ dataset && dataset.map((value, index)=>  
               ( 
-                <div>
-                  <Bar key={index} options={options} data={value} />
+                <div key={index}>
+                  <Bar options={options} data={value} />
                   <br></br>
                 </div>
               )
